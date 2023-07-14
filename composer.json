@@ -1,0 +1,25 @@
+{
+    "name": "lucasvolpati/back-end-test",
+    "description": "This is a back-end test.",
+    "type": "project",
+    "require": {
+        "coffeecode/router": "2.0.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Support/Config.php",
+            "source/Support/Helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Lucas Alcantara Rodrigues Volpati",
+            "email": "lucas.volpati@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
