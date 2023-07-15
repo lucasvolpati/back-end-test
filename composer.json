@@ -3,7 +3,8 @@
     "description": "This is a back-end test.",
     "type": "project",
     "require": {
-        "coffeecode/router": "2.0.2"
+        "coffeecode/router": "2.0.2",
+        "vlucas/phpdotenv": "5.5.0"
     },
     "license": "MIT",
     "autoload": {
@@ -11,7 +12,6 @@
             "Source\\": "source/"
         },
         "files": [
-            "source/Support/Config.php",
             "source/Support/Helpers.php"
         ]
     },
