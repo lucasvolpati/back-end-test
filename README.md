@@ -12,6 +12,10 @@ This project is a simple API to get address bypassing postal code (only for Braz
 composer install
 ```
 
+## 2º Step
+Configure the *.env* file with APP_URL and database configurations.
+
+
 ## Localhost Endpoint
 ### api/cep/{cep}/{save}
 In *{cep}* variable you need to entry the zip code number, with 8 digits, and the *{save}* variable will receive *'yes'* or *'no'* if you want to save this query in history, but for this, you should send the header *client-credential* with your e-mail, follow curl example:
