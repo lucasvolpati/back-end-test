@@ -14,7 +14,7 @@ composer install
 
 ## Localhost Endpoint
 ### api/cep/{cep}/{save}
-In *cep* variable you need to entry the zip code number, with 8 digits, and the *save* variable will receive *yes* or *no* if you want to save this query in history, but for this, you should send the header *client-credential* with your e-mail, follow curl example:
+In *{cep}* variable you need to entry the zip code number, with 8 digits, and the *{save}* variable will receive *'yes'* or *'no'* if you want to save this query in history, but for this, you should send the header *client-credential* with your e-mail, follow curl example:
 
 ```
 curl_setopt_array($curl, [
