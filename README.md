@@ -32,6 +32,8 @@ curl_setopt_array($curl, [
 ]);
 ```
 
+If *save-status* returns 1, then you have successfully saved your query, verify the JSON return
+
 ## Demo Endpoint
 ### api/cep/{cep}/{save}
 You only need change the url to 'https://www.lucasalcantara.dev.br/back-end/api/cep/{cep}/{save}'.

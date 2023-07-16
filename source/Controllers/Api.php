@@ -82,6 +82,10 @@ class Api {
             return $response;
         }
 
+        $response['response_status']['save-status'] = 0;
+        $response['response_status']['status'] = 1;
+        $response['response_status']['message'] = 'Solicitação realizada com sucesso!';
+        
         return $response;        
     }
 }
