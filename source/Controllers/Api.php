@@ -6,10 +6,16 @@ use Source\Models\Searches;
 
 class Api {
 
+    /*** @var int[] */
     protected static $httpCode = [400,200];
 
+    /*** @var */
     protected $cep;
 
+    /**
+     * @param array $data
+     * @return void
+     */
     public function getAddress(array $data)
     {
         $this->cep = mb_strpos(trim($data['cep']), '-') ? str_replace("-", '', trim($data['cep'])) : trim($data['cep']);
@@ -43,7 +49,12 @@ class Api {
         echo '[' . $curlReturn .','. $responseReturn .','. $error . ']';
     }
 
-    protected function getResult(string $cep, $save) {
+    /**
+     * @param string $cep
+     * @param string $save
+     * @return array
+     */
+    protected function getResult(string $cep, string $save) {
 
         $all = getallheaders();
         

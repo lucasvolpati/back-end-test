@@ -5,6 +5,9 @@ require __DIR__ . '/vendor/autoload.php';
 
 use CoffeeCode\Router\Router;
 
+/**
+ * Loading .env file
+ */
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 

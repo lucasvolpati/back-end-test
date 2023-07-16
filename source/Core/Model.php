@@ -7,10 +7,17 @@ use PDOException;
 
 class Model {
 
+    /*** @var */
     protected $data;
-    
+
+    /*** @var */
     protected $fail;
 
+    /**
+     * @param $name
+     * @param $value
+     * @return void
+     */
     public function __set($name, $value)
     {
         if (empty($this->data)) {
@@ -20,16 +27,28 @@ class Model {
         $this->data->$name = $value;
     }
 
+    /**
+     * @param $name
+     * @return null
+     */
     public function __get($name)
     {
         return ($this->data->$name ?? null);
     }
 
-    public function fail(): ?\PDOException 
+    /**
+     * @return PDOException|null
+     */
+    public function fail(): ?\PDOException
     {
         return $this->fail;
     }
 
+    /**
+     * @param string $entity
+     * @param array $data
+     * @return int|null
+     */
     protected function create(string $entity, array $data): ?int
     {
         try {
@@ -48,6 +67,11 @@ class Model {
         }
     }
 
+    /**
+     * @param string $select
+     * @param string|null $params
+     * @return \PDOStatement|null
+     */
     protected function read(string $select, string $params = null): ?\PDOStatement
     {
         try {
@@ -71,6 +95,9 @@ class Model {
         }
     }
 
+    /**
+     * @return array|null
+     */
     protected function safe(): ?array
     {
         $safe = (array)$this->data;
@@ -80,6 +107,10 @@ class Model {
         return $safe;
     }
 
+    /**
+     * @param array $data
+     * @return array|null
+     */
     protected function filter(array $data): ?array
     {
         $filter = [];

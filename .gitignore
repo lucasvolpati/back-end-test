@@ -1,2 +1,8 @@
+# Composer
 /vendor/
+
+#Config
 .env
+
+# PHP Storm
+.idea/
