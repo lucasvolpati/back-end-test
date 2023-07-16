@@ -25,7 +25,6 @@ class Api {
         if (!preg_match($pattern, $this->cep)) {
             http_response_code(self::$httpCode[1]);
 
-            
             $error = [
                 'http-code' => 400,
                 'message' => 'ZIP Code number needs to be 8 digits long, you entered ' . strlen($this->cep)

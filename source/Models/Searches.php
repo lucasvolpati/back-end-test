@@ -26,7 +26,7 @@ class Searches extends Model {
     /**
      * @param string $credential
      * @param object $data
-     * @return $this
+     * @return Searches
      */
     public function bootstrap(string $credential, object $data)
     {
