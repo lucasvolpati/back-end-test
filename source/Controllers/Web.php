@@ -8,4 +8,9 @@ class Web {
     {
         require viewsPath('home');
     }
+
+    public function ajax() 
+    {
+        require requireItem('resources/ajax.php');
+    }
 }

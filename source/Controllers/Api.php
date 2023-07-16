@@ -10,9 +10,9 @@ class Api {
 
     protected $cep;
 
-    public function getAddress(array $cep)
+    public function getAddress(array $data)
     {
-        $this->cep = mb_strpos(trim($cep['cep']), '-') ? str_replace("-", '', trim($cep['cep'])) : trim($cep['cep']);
+        $this->cep = mb_strpos(trim($data['cep']), '-') ? str_replace("-", '', trim($data['cep'])) : trim($data['cep']);
 
         $pattern = "/^[0-9]{8}$/";
 
@@ -30,15 +30,23 @@ class Api {
             return;
         }
 
-        echo $this->getResult($this->cep);
+        $request = $this->getResult($this->cep, $data['save']);
+
+        $error = '{}';
+        if ($request['response_status']['save-status'] == 0) {
+            $error = json_encode($request['response_status']);
+        }
+
+        $curlReturn = $request['response_data']['curl'];
+        $responseReturn = json_encode($request['response_status']);
+
+        echo '[' . $curlReturn .','. $responseReturn .','. $error . ']';
     }
 
-    protected function getResult(string $cep) {
+    protected function getResult(string $cep, $save) {
+
         $all = getallheaders();
         
-        $save = isset($all['save-search']) ? $all['save-search'] : 'no';
-        $credential = isset($all['save-search']) == 'yes' ? $all['client-credential'] : '';
-
         $curl = curl_init();
 
         curl_setopt_array($curl, [
@@ -50,24 +58,30 @@ class Api {
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => [
-                "save-search: {$save}",
-                "client-credential: {$credential}"
-            ],
         ]);
 
-        $response = curl_exec($curl);
+        $response['response_data']['curl'] = curl_exec($curl);
 
         curl_close($curl);
 
-        // if ($save === 'yes') {
+        if ($save === 'yes' && isset($all['client-credential'])) {
             $search = new Searches();
-            $array = json_decode($response);
-            $result = $search->bootstrap($credential, '['.$response.']')->save();
-        // }
+            $result = $search->bootstrap($all['client-credential'], json_decode($response['response_data']['curl']))->save();
 
-    var_dump($result);
+            $response['response_status']['save-status'] = 1;
+            $response['response_status']['message'] = 'Solicitação realizada com sucesso! Para consultar seus endereços salvos acesse https://lucasalcantara.dev.br/api-cep e informe seu e-mail.';
+            $response['response_status']['return'] = $result;
 
-        return $response;
+            return $response;
+        }
+
+        if ($save === 'yes' && !isset($all['client-credential'])) {
+            $response['response_status']['save-status'] = 0;
+            $response['response_status']['message'] = 'Impossivel salvar a consulta, o e-mail do usuario nao foi informado no header da requisicao. Ver instrucoes em https://github.com/lucasvolpati/back-end-test';
+
+            return $response;
+        }
+
+        return $response;        
     }
 }

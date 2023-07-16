@@ -16,19 +16,19 @@
 }
 
 body {
-    background-color: var(--light) !important;
+    background-color: var(--dark) !important;
 }
 
 h1 {
-    font-size: 2em !important;
+    font-size: 1.8em !important;
 }
 
 h2 {
-    font-size: 1.7em;
+    font-size: 1.5em;
 }
 
 h3 {
-    font-size: 1.4em;
+    font-size: 1.3em;
 }
 
 h1, h2, h3 {
@@ -36,7 +36,93 @@ h1, h2, h3 {
     margin: 0 !important;
 }
 
+.swal2-popup h2 {
+    font-size: 1.2em;
+}
+
+.swal2-title {
+    color: var(--dark) !important;
+}
+
 p {
     margin: 0;
     color: var(--dark);
+}
+
+/*
+*   Container
+*/
+
+.container {
+    padding: 16px;
+    width: 1300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-content {
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#table-content {
+    max-height: 50%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    border-radius: 50px !important;
+}
+
+.search-btn {
+    border: none;
+    border-radius: 50%;
+    background-color: var(--principal);
+    color: var(--white);
+    transition: all 0.3s ease-in-out;
+    width: 80px;
+    height: 80px;
+}
+
+.search-btn i {
+    font-size: 2em;
+}
+
+.search-btn:hover {
+    background-color: #fc8936;
+    color: var(--dark);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/*
+* Datatable
+*/
+
+
+
+label {
+    color: var(--light);
+}
+
+.form-floating label {
+    color: var(--dark) !important;
+}
+
+.table>:not(caption)>*>* {
+    background-color: #1c1c1c !important;
+    color: var(--light) !important;
+}
+
+.dataTables_info {
+    color: var(--light);
 }

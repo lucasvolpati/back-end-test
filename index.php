@@ -19,8 +19,14 @@ $router->get('/', 'Web:index');
 
 /**
 * API Routes
+*/ 
+$router->get('/api/cep/{cep}/{save}','Api:getAddress');
+
+/*
+* AJAX 
 */
-$router->get('/api/cep/{cep}', 'Api:getAddress');
+$router->post("/ajax", "Web:ajax");
+
 
 $router->dispatch();
 
