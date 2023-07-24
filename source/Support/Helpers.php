@@ -40,3 +40,17 @@ function assets(string $path)
 {
     return $_ENV['APP_URL'] . "/resources/assets" . ($path[0] == '/' ? $path : '/' . $path);
 }
+
+/**
+ * @param array|string $data
+ * @param string|null $mode | null or 'enc' to json_encode and 'dec' to json_decode
+ * @return array|string
+ */
+function json(array|string $data, string $mode = null) 
+{
+    if ($mode === 'dec') {
+        return json_decode($data);
+    }
+
+    return json_encode($data);
+}

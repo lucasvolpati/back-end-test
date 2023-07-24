@@ -29,7 +29,7 @@ class Api {
                 'http-code' => 400,
                 'message' => 'ZIP Code number needs to be 8 digits long, you entered ' . strlen($this->cep)
             ];
-            echo json_encode($error);
+            echo json($error);
 
             header("HTTP/1.1 400");
             return;
@@ -39,11 +39,11 @@ class Api {
 
         $error = '{}';
         if ($request['response_status']['save-status'] == 0) {
-            $error = json_encode($request['response_status']);
+            $error = json($request['response_status']);
         }
 
         $curlReturn = $request['response_data']['curl'];
-        $responseReturn = json_encode($request['response_status']);
+        $responseReturn = json($request['response_status']);
 
         echo '[' . $curlReturn .','. $responseReturn .','. $error . ']';
     }

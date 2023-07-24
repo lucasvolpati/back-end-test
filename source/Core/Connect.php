@@ -39,4 +39,12 @@ class Connect
 
         return self::$instance;
     }
+
+    final public function __clone() {
+
+    } 
+
+    final public function __construct() {
+        
+    }
 }
